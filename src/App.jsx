@@ -5,7 +5,7 @@ import ResultsScreen from './components/ResultsScreen'
 
 // React
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // Data
 
@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     const uniqueLetters = letters.filter((item, i, ar) => ar.indexOf(item) === i);
-    console.log(guessedLetters, letters);
+    
     if(guessedLetters.length > 0 && guessedLetters.length == uniqueLetters.length) {
       setScore((actual) => actual + 100);
       chooseWord();
@@ -104,7 +104,7 @@ function App() {
     <div className='App'> 
       {gameStage === 'start' && <StartScreen startGame={startGame}/>}
       {gameStage === 'game' && <GameScreen verifyLetter={verifyLetter} pickedCategory={pickedCategory} pickedWord={pickedWord} letters={letters} guessedLetters={guessedLetters} wrongLetters={wrongLetters} retries={retries} score={score}/>}
-      {gameStage === 'results' && <ResultsScreen returnStart={returnStart}/>}
+      {gameStage === 'results' && <ResultsScreen returnStart={returnStart} score={score}/>}
     </div>
   )
 }
